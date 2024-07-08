@@ -67,7 +67,9 @@ async function main() {
 
   if (eventos.length > 0) {
     for (const evento of eventos) {
-      const message = `Hoy ${formattedDate}\nde ${evento.start} a ${evento.end}\ntienes el siguiente evento: ${evento.summary}`;
+      const startTime = new Date(evento.start).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      const endTime = new Date(evento.end).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      const message = `Hoy ${formattedDate}\nde ${startTime} a ${endTime}\ntienes el siguiente evento: ${evento.summary}`;
       await sendWhatsAppMessage(number, message);
     }
   } else {
