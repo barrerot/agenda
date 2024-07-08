@@ -55,10 +55,10 @@ async function main() {
 
   if (cumpleanos.length > 0) {
     const birthdayNames = cumpleanos.map(b => b.summary).join(', ');
-    const message = `Hoy ${formattedDate}\nEs el cumpleaños de: ${birthdayNames}`;
+    const message = `Mañana ${formattedDate}\nEs el cumpleaños de: ${birthdayNames}`;
     await sendWhatsAppMessage(number, message);
   } else {
-    const message = `Hoy ${formattedDate}\nNo tienes ningún cumpleaños conocido`;
+    const message = `Mañana ${formattedDate}\nNo tienes ningún cumpleaños conocido`;
     await sendWhatsAppMessage(number, message);
   }
 
@@ -69,11 +69,11 @@ async function main() {
     for (const evento of eventos) {
       const startTime = new Date(evento.start).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
       const endTime = new Date(evento.end).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-      const message = `Hoy ${formattedDate}\nde ${startTime} a ${endTime}\ntienes el siguiente evento: ${evento.summary}`;
+      const message = `Mañana ${formattedDate}\nde ${startTime} a ${endTime}\ntienes el siguiente evento: ${evento.summary}`;
       await sendWhatsAppMessage(number, message);
     }
   } else {
-    const message = `Hoy ${formattedDate}\nNo tienes eventos agendados`;
+    const message = `Mañana ${formattedDate}\nNo tienes eventos agendados`;
     await sendWhatsAppMessage(number, message);
   }
 }
