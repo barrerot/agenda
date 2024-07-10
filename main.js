@@ -46,12 +46,14 @@ async function sendWhatsAppMessage(number, message) {
 // Función principal
 async function main() {
   const number = '34699490161';
-  const today = new Date().toISOString().split('T')[0];
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowString = tomorrow.toISOString().split('T')[0];
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = new Date().toLocaleDateString('es-ES', options);
+  const formattedDate = tomorrow.toLocaleDateString('es-ES', options);
 
   // Obtener cumpleaños
-  const cumpleanos = await getCumpleanos(today);
+  const cumpleanos = await getCumpleanos(tomorrowString);
 
   if (cumpleanos.length > 0) {
     const birthdayNames = cumpleanos.map(b => b.summary).join(', ');
@@ -63,7 +65,7 @@ async function main() {
   }
 
   // Obtener eventos
-  const eventos = await getEventos(today);
+  const eventos = await getEventos(tomorrowString);
 
   if (eventos.length > 0) {
     for (const evento of eventos) {
